@@ -35,7 +35,7 @@ public class Motors {
         victorRight1 = new WPI_VictorSPX(RobotMap.VICTOR_RIGHT_1.getPin());
         victorLeft2 = new WPI_VictorSPX(RobotMap.VICTOR_LEFT_2.getPin());
         victorRight2 = new WPI_VictorSPX(RobotMap.VICTOR_RIGHT_2.getPin());
-        
+
         left = new SpeedControllerGroup(victorLeft1, victorLeft2);
         right = new SpeedControllerGroup(victorRight1, victorRight2);
         drive = new DifferentialDrive(left, right);
@@ -59,4 +59,4 @@ public class Motors {
         drive = new DifferentialDrive(left, right);
         drive.setSafetyEnabled(false);
     }
-}
+} 
