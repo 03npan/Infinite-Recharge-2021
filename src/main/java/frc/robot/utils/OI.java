@@ -16,9 +16,9 @@ public class OI {
     public XboxController oController = new XboxController(1);
 
     public OI() {
-        JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
-        JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
-        JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
+        final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
+        final JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
+        final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
 
         shootButton.whenPressed(new Shoot(1));
         feedButton.whenPressed(new Feed(new FeederSubsystem()));

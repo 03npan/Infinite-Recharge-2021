@@ -17,8 +17,6 @@ public class Aim extends CommandBase {
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
 
-    OI oi = new OI();
-
     public Aim() {
         LimelightWrapper.ledMode(true);
     }
@@ -34,7 +32,7 @@ public class Aim extends CommandBase {
     }
 
     @Override
-    public void end(boolean interrupted) {
+    public void end(final boolean interrupted) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
 
@@ -61,9 +59,9 @@ public class Aim extends CommandBase {
         final double DESIRED_TARGET_AREA = 13.0; // Area of the target when the robot reaches the wall
         final double MAX_DRIVE = 0.5; // Simple speed limit so we don't drive too fast
 
-        double x = LimelightWrapper.getX();
-        double y = LimelightWrapper.getY();
-        double area = LimelightWrapper.getArea();
+        final double x = LimelightWrapper.getX();
+        final double y = LimelightWrapper.getY();
+        final double area = LimelightWrapper.getArea();
 
         if (!LimelightWrapper.isTargetAvalible()) {
             m_LimelightHasValidTarget = false;
@@ -75,7 +73,7 @@ public class Aim extends CommandBase {
         m_LimelightHasValidTarget = true;
 
         // Start with proportional steering
-        double steer_cmd = x * STEER_K;
+        final double steer_cmd = x * STEER_K;
         m_LimelightSteerCommand = steer_cmd;
 
         // try to drive forward until the target area reaches our desired area
