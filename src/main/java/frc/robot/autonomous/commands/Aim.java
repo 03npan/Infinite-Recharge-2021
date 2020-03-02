@@ -1,3 +1,7 @@
+/*
+
+WORK IN PROGRESS, WILL BE CONVERTED SOON
+
 package frc.robot.autonomous.commands;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -5,19 +9,12 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.utils.LimelightWrapper;
-import frc.robot.utils.Motors;
-import frc.robot.utils.OI;
 
-/**
- * Aim
- */
 public class Aim extends CommandBase {
 
     private boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
-
-    OI oi = new OI();
 
     public Aim() {
         LimelightWrapper.ledMode(true);
@@ -89,3 +86,4 @@ public class Aim extends CommandBase {
     }
 
 }
+*/

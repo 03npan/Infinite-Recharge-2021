@@ -1,3 +1,7 @@
+/*
+
+REPLACED BY SUBSYSTEMS, KEPT FOR REFERENCE
+
 package frc.robot.utils;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -7,9 +11,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-/**
- * Motors
- */
 public class Motors {
 
     // ----------------------------- Driving Motors -----------------------------
@@ -60,3 +61,4 @@ public class Motors {
         drive.setSafetyEnabled(false);
     }
 } 
+*/

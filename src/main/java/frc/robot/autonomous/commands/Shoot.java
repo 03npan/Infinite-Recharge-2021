@@ -1,31 +1,29 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.autonomous.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.utils.Motors;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class Shoot extends CommandBase {
+    private final ShooterSubsystem m_shooter;
 
-    private double motorSpeed;
-
-    public Shoot(double motorSpeed) {
-        this.motorSpeed = motorSpeed;
+    public Shoot(ShooterSubsystem shoot) {
+        m_shooter = shoot;
+        addRequirements(m_shooter);
     }
 
     @Override
     public void initialize() {
-        Motors.leadShooterNeo.set(motorSpeed);
+        m_shooter.runShooter();
+    }
+
+    @Override
+    public void execute() {
+        //m_shooter.runShooter(); TRY HERE IF IT DOESN'T WORK IN INITIALIZE
     }
 
     @Override
     public void end(boolean interrupted) {
-        Motors.leadShooterNeo.set(0);
+        m_shooter.stopShooter();
     }
 
     @Override

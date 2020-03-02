@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.utils.LimelightWrapper;
-import frc.robot.utils.Motors;
-import frc.robot.utils.OI;
-import frc.robot.utils.Sensors;
+//import frc.robot.utils.Motors;
+//import frc.robot.utils.Sensors;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +29,10 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private OI oi;
+  private Command m_autonomousCommand; //not currently used
 
+  private RobotContainer m_robotContainer;
+ 
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -40,10 +43,10 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    oi = new OI();
+    //Motors.initialize();
+    //Sensors.initialize();
 
-    Motors.initialize();
-    Sensors.initialize();
+    m_robotContainer = new RobotContainer();
   }
 
   /**
@@ -57,6 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   /**
@@ -76,6 +80,14 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+
+    /*Autonomous command scheduler
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
+    */
   }
 
   /**
@@ -100,7 +112,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     LimelightWrapper.update();
-    runShooter();
+    //runShooter();
   }
 
   /**
@@ -110,11 +122,13 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
+  /*
   private void runShooter() {
-    if (Math.abs(oi.dController.getRawAxis(5)) > 0.15) {
-      Motors.leadShooterNeo.set(oi.dController.getRawAxis(5));
+    if (Math.abs(m_robotContainer.dController.getRawAxis(5)) > 0.15) {
+      Motors.leadShooterNeo.set(m_robotContainer.dController.getRawAxis(5));
     } else {
       Motors.leadShooterNeo.set(0);
     }
   }
+  */
 }

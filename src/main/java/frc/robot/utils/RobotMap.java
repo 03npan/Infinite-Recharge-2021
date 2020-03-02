@@ -1,22 +1,23 @@
+/*
+
+REPLACED BY Constants.java FILE, KEPT FOR REFERENCE
+
 package frc.robot.utils;
 
-/**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier 
  * and significantly reduces the number of magic numbers
  * floating around.
  * @author Alex Plisov
- */
 
- /*
 	5 = #1
 	4 = #14
 	3 = #12
 	2 = #13
 	1 = #2
 	0 = #3
- */
+
 public enum RobotMap {
 	// DRIVE MOTORS
 	VICTOR_LEFT_1(0),
@@ -39,3 +40,4 @@ public enum RobotMap {
 		return pinNum;
 	}
 }
+*/

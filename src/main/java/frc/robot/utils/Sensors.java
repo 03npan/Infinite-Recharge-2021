@@ -1,11 +1,11 @@
+/*
+
+REPLACED BY SUBSYSTEMS, KEPT FOR REFERENCE
+
 package frc.robot.utils;
 
 import com.revrobotics.CANEncoder;
 
-/**
- * Sensors
- * Should be initialized AFTER initializing the Motors class
- */
 public class Sensors {
 
     public static CANEncoder leftNeo;
@@ -16,3 +16,4 @@ public class Sensors {
         //rightNeo = new CANEncoder(Motors.followerShooterNeo);
     }
 }
+*/
