@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.autonomous.commands.RotateToAngle;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
+import frc.robot.utils.NavX;
 import frc.robot.utils.OI;
 import frc.robot.utils.Sensors;
 
@@ -30,8 +32,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  RotateToAngle rotateToAngleCommand;
+
   private OI oi;
   private XboxController driverController;
+  private NavX navX;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -44,8 +49,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     oi = new OI();
+    navX = new NavX();
 
-    driverController = oi.dController;
+    rotateToAngleCommand = new RotateToAngle(navX, 90);
+
+    driverController = OI.dController;
 
     Motors.initialize();
     Sensors.initialize();
@@ -82,6 +90,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    if(rotateToAngleCommand != null) rotateToAngleCommand.schedule();
   }
 
   /**

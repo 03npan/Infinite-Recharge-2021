@@ -36,6 +36,10 @@ public class Aim extends CommandBase {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
 
+    private NetworkTable getTable() {
+        return NetworkTableInstance.getDefault().getTable("limelight");
+    }
+
     @Override
     public boolean isFinished() {
         return true;
@@ -84,6 +88,34 @@ public class Aim extends CommandBase {
             drive_cmd = MAX_DRIVE;
         }
         m_LimelightDriveCommand = drive_cmd;
+    }
+
+    private void aimAndRange() {
+        float KpAim = -0.1f;
+        float KpDistance = -0.1f;
+        float min_aim_command = 0.0f;
+
+        double tx = LimelightWrapper.getX();
+        double ty = LimelightWrapper.getY();
+
+        double heading_error = -tx;
+        double distance_error = -ty;
+        double steering_adjust = 0.0f;
+
+        if(tx > 1.0) {
+            steering_adjust = KpAim * heading_error - min_aim_command;
+        } else if(tx < 1.0) {
+            steering_adjust = KpAim * heading_error + min_aim_command;
+        }
+
+        double distance_adjust = KpDistance * distance_error;
+
+        double left_command = 0;
+        left_command += steering_adjust + distance_error;
+        double right_command = 0;
+        right_command -= steering_adjust + distance_adjust;
+
+        Motors.drive.tankDrive(left_command, right_command);
     }
 
 }

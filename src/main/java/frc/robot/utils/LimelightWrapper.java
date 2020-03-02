@@ -40,6 +40,10 @@ public class LimelightWrapper {
         return ta.getDouble(0.0);
     }
 
+    public static double getV() {
+        return tv.getDouble(0.0);
+    }
+
     public static boolean isTargetAvalible() {
         return tv.getBoolean(false);
     }

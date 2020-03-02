@@ -10,9 +10,9 @@ package frc.robot.utils;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.controller.PIDController;
 
 /**
  * Add your docs here.
@@ -40,8 +40,12 @@ public class NavX implements PIDOutput {
             DriverStation.reportError("Error intantiating navX-MXP: " + e.getMessage(), true);
         }
 
-        turnController = new PIDController(kP, kI, kD, kF);
-        turnController.setTolerance(kToleranceDegrees);
+        turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+        turnController.setInputRange(-180.0f,  180.0f);
+        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setContinuous(true);
+        turnController.disable();
     }
 
     public AHRS getAHRS() {
@@ -57,6 +61,13 @@ public class NavX implements PIDOutput {
      */
     public double getRotateToAngleRate() {
         return rotateToAngleRate;
+    }
+
+    /**
+     * @return the turnController
+     */
+    public PIDController getTurnController() {
+        return turnController;
     }
 
     @Override

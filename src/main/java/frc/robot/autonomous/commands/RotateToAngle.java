@@ -7,40 +7,36 @@
 
 package frc.robot.autonomous.commands;
 
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.utils.Motors;
 import frc.robot.utils.NavX;
+import frc.robot.utils.OI;
 
-public class RotateToAngle extends CommandBase {
+public class RotateToAngle extends CommandBase implements PIDOutput {
   /**
    * Creates a new RotateToAngle.
    */
 
-  private float kTargetAngleDegrees;
   private DifferentialDrive drive = Motors.drive;
   private PIDController turnController;
-  private AHRS ahrs;
 
-  private XboxController driverController;
+  private XboxController driverController = OI.dController;
 
-  private NavX navX;
+  private NavX navX = new NavX();
 
   static final double kToleranceDegrees = 2.0f;
   double rotateToAngleRate;
+  private double angleBuffer = 3;
+  private double angle;
 
-  public RotateToAngle(float kTargetAngleDegrees, PIDController turnController, AHRS ahrs, NavX navX,
-      XboxController driverController) {
-    this.kTargetAngleDegrees = kTargetAngleDegrees;
-    this.turnController = turnController;
-    this.ahrs = ahrs;
-    this.navX = navX;
+  public RotateToAngle(double angle) {
+    this.turnController = navX.getTurnController();
     rotateToAngleRate = navX.getRotateToAngleRate();
-    this.driverController = driverController;
+    this.angle = angle;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -52,11 +48,13 @@ public class RotateToAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    rotateToAngle();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    stopRotating();
   }
 
   // Returns true when the command should end.
@@ -88,7 +86,7 @@ public class RotateToAngle extends CommandBase {
     System.out.println("1");
     if (!turnController.isEnabled()) {
       System.out.println("2");
-      turnController.setSetpoint(kTargetAngleDegrees);
+      turnController.setSetpoint(angle);
       System.out.println("3");
       rotateToAngleRate = 0; // This value will be updated in the pidWrite() method.
       turnController.enable();
@@ -100,5 +98,19 @@ public class RotateToAngle extends CommandBase {
     System.out.println("6");
     drive.tankDrive(leftStickValue, rightStickValue);
     System.out.println("7. Current Rotate Angle Rate: " + rotateToAngleRate);
+    if ((navX.getAHRS().getAngle() >= angle - angleBuffer)
+        && (navX.getAHRS().getAngle() <= angle + angleBuffer)) {
+          end(true);
+    }
+  }
+
+  public void stopRotating() {
+    turnController.disable();
+  }
+
+  @Override
+  public void pidWrite(double output) {
+    rotateToAngleRate = output;
+
   }
 }

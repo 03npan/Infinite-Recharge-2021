@@ -3,15 +3,15 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.commands.Aim;
-import frc.robot.autonomous.commands.Shoot;
+import frc.robot.autonomous.commands.groups.Shoot;
 
 /**
  * OI
  */
 public class OI {
 
-    public XboxController dController = new XboxController(0);
-    public XboxController oController = new XboxController(1);
+    public static XboxController dController = new XboxController(0);
+    public static XboxController oController = new XboxController(1);
 
     public OI() {
         final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);

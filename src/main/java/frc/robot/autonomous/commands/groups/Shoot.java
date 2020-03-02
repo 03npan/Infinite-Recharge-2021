@@ -5,10 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.autonomous.commands;
+package frc.robot.autonomous.commands.groups;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import frc.robot.autonomous.commands.BottomFeed;
+import frc.robot.autonomous.commands.Shooter;
+import frc.robot.autonomous.commands.TopFeed;
 import frc.robot.autonomous.subsystems.BottomFeedSubsystem;
 import frc.robot.autonomous.subsystems.ShooterSubsystem;
 import frc.robot.autonomous.subsystems.TopFeedSubsystem;
