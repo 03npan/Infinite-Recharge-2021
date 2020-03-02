@@ -2,14 +2,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import frc.robot.autonomous.commands.Aim;
-import frc.robot.autonomous.commands.Feed;
-import frc.robot.autonomous.commands.Shoot;
+import frc.robot.autonomous.commands.*;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -48,15 +44,15 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         new JoystickButton(dController, XboxController.Button.kA.value)
-            .whenPressed(new Shoot(m_shooter));
+            .whenPressed(new Shoot(m_shooter));       
         
-        /* TRY IF THE ABOVE DOESN'T WORK
+            //TRY IF THE ABOVE DOESN'T WORK
         final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
         final JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
         final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
             
         shootButton.whenPressed(new Shoot(m_shooter));
-        */
+        
     }
 
 
