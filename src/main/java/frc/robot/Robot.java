@@ -8,8 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
 import frc.robot.utils.OI;
@@ -29,6 +31,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   private OI oi;
+  private XboxController driverController;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -41,6 +44,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     oi = new OI();
+
+    driverController = oi.dController;
 
     Motors.initialize();
     Sensors.initialize();
@@ -57,6 +62,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   /**
@@ -84,13 +90,13 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     switch (m_autoSelected) {
-    case kCustomAuto:
-      // Put custom auto code here
-      break;
-    case kDefaultAuto:
-    default:
-      // Put default auto code here
-      break;
+      case kCustomAuto:
+        // Put custom auto code here
+        break;
+      case kDefaultAuto:
+      default:
+        // Put default auto code here
+        break;
     }
   }
 
@@ -116,5 +122,23 @@ public class Robot extends TimedRobot {
     } else {
       Motors.leadShooterNeo.set(0);
     }
+  }
+
+  private void driveControl() {
+    double deadZone = 0.15;
+    double dif = Math.signum(driverController.getRawAxis(2) - driverController.getRawAxis(3))
+        * ((driverController.getRawAxis(2) - driverController.getRawAxis(3))
+            * (driverController.getRawAxis(2) - driverController.getRawAxis(3)));
+    if (Math.abs(dif) <= deadZone)
+      dif = 0.0;
+
+    double turn = Math.signum(driverController.getRawAxis(0))
+        * (driverController.getRawAxis(0) * driverController.getRawAxis(0));
+    if (Math.abs(turn) <= deadZone)
+      turn = 0.0;
+
+    Motors.drive.arcadeDrive(dif * 1, (turn) * 0.6); // 0.8
+    // Fist num: Driving speed
+    // Second num: Turning speed
   }
 }

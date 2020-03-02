@@ -47,16 +47,16 @@ public class Motors {
         feederMotorTop = new WPI_VictorSPX(RobotMap.FEEDER_MOTOR_TOP.getPin());
 
         leadShooterNeo = new CANSparkMax(RobotMap.LEAD_SHOOTER_NEO.getPin(), MotorType.kBrushless);
+        followerShooterNeo = new CANSparkMax(RobotMap.FOLLOWER_SHOOTER_NEO.getPin(), MotorType.kBrushless);
 
         leadShooterNeo.restoreFactoryDefaults();
-        // followerShooterNeo = new CANSparkMax(RobotMap.SHOOTER_MOTOR_RIGHT.getPin(),
-        // MotorType.kBrushless);
+        followerShooterNeo.restoreFactoryDefaults();
 
-        // followerShooterNeo.follow(leadShooterNeo);
+        followerShooterNeo.follow(leadShooterNeo);
 
         left = new SpeedControllerGroup(victorLeft1, victorLeft2);
         right = new SpeedControllerGroup(victorRight1, victorRight2);
         drive = new DifferentialDrive(left, right);
         drive.setSafetyEnabled(false);
     }
-} 
+}

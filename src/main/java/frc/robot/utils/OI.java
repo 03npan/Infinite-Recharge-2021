@@ -3,9 +3,7 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.commands.Aim;
-import frc.robot.autonomous.commands.Feed;
 import frc.robot.autonomous.commands.Shoot;
-import frc.robot.autonomous.subsystems.FeederSubsystem;
 
 /**
  * OI
@@ -17,12 +15,10 @@ public class OI {
 
     public OI() {
         final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
-        final JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
         final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
 
-        shootButton.whenPressed(new Shoot(1));
-        feedButton.whenPressed(new Feed(new FeederSubsystem()));
-        aimButton.whenPressed(new Aim());
+        shootButton.whenActive(new Shoot());
+        aimButton.whenActive(new Aim());
     }
 
     public void runIntake() {
