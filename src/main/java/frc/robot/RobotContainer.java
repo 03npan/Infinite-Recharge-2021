@@ -43,7 +43,7 @@ public class RobotContainer {
         // Default command set to drive
         m_robotDrive.setDefaultCommand(
             new RunCommand(() -> m_robotDrive
-                .driveRobot(1,1), m_robotDrive)); // finish up driveRobot()
+                .driveRobot(dController), m_robotDrive)); // finish up driveRobot()
     }
 
     private void configureButtonBindings() {

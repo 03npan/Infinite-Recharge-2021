@@ -16,13 +16,19 @@ public class FeederSubsystem extends SubsystemBase {
 
     }
 
-    public void runFeeder() {
+    public void runBottomFeeder() {
         feederMotorBottom.set(FeederConstants.feeder_speed);
+    }
+
+    public void runTopFeeder() {
         feederMotorTop.set(FeederConstants.feeder_speed);
     }
 
-    public void stopFeeder() {
+    public void stopBottomFeeder() {
         feederMotorBottom.set(0);
+    }
+
+    public void stopTopFeeder() {
         feederMotorTop.set(0);
     }
 }
