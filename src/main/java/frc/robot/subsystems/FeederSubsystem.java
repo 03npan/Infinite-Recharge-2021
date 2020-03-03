@@ -1,5 +1,3 @@
-//maybe this should be combined into shooter/intake subsystem
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
