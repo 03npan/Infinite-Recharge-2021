@@ -46,13 +46,13 @@ public class RobotContainer {
         new JoystickButton(dController, XboxController.Button.kA.value)
             .whenPressed(new Shoot(m_shooter));       
         
-            //TRY IF THE ABOVE DOESN'T WORK
+        /*TRY IF THE ABOVE DOESN'T WORK
         final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
         final JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
         final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
             
         shootButton.whenPressed(new Shoot(m_shooter));
-        
+        */
     }
 
 
