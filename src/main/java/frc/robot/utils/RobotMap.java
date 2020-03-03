@@ -25,10 +25,11 @@ public enum RobotMap {
 	VICTOR_RIGHT_2(3),
 
 	INTAKE_MOTOR(4),
-    LEAD_SHOOTER_NEO(5),
-    FOLLOWER_SHOOTER_NEO(6),
-    FEEDER_MOTOR_BOTTOM(7),
-    FEEDER_MOTOR_TOP(8);
+	COLOR_WHEEL_MOTOR(5),
+    LEAD_SHOOTER_NEO(6),
+    FOLLOWER_SHOOTER_NEO(7),
+    FEEDER_MOTOR_BOTTOM(8),
+    FEEDER_MOTOR_TOP(9);
 	
 	private int pinNum;
 	RobotMap(int num) {

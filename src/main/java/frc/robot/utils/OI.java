@@ -3,6 +3,7 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.commands.Aim;
+import frc.robot.autonomous.commands.SpinColorWheel;
 import frc.robot.autonomous.commands.groups.Shoot;
 
 /**
@@ -15,11 +16,13 @@ public class OI {
 
     final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
     final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
+    final JoystickButton spinColorWheelButton = new JoystickButton(dController, XboxController.Button.kB.value);
 
     public OI() {
 
         shootButton.whenActive(new Shoot());
         aimButton.whenActive(new Aim());
+        spinColorWheelButton.whenActive(new SpinColorWheel());
     }
 
     public void runIntake() {

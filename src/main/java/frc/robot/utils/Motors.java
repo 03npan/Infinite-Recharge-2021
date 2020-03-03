@@ -27,6 +27,8 @@ public class Motors {
     public static WPI_VictorSPX feederMotorBottom;
     public static WPI_VictorSPX feederMotorTop;
 
+    public static WPI_VictorSPX colorWheelMotor;
+
     public static CANSparkMax leadShooterNeo;
     public static CANSparkMax followerShooterNeo;
 
@@ -42,6 +44,8 @@ public class Motors {
         drive.setSafetyEnabled(false);
 
         intakeMotor = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR.getPin());
+
+        colorWheelMotor = new WPI_VictorSPX(RobotMap.COLOR_WHEEL_MOTOR.getPin());
 
         feederMotorBottom = new WPI_VictorSPX(RobotMap.FEEDER_MOTOR_BOTTOM.getPin());
         feederMotorTop = new WPI_VictorSPX(RobotMap.FEEDER_MOTOR_TOP.getPin());
