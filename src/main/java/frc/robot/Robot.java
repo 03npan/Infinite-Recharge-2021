@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
   RotateToAngle rotateToAngleCommand;
 
   private OI oi;
-  private XboxController driverController = OI.dController;
+  private XboxController driverController;
   private NavX navX;
 
   /**
@@ -48,12 +48,15 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+    oi = new OI();
+    navX = new NavX();
+
+    rotateToAngleCommand = new RotateToAngle(navX, 90);
+
+    driverController = OI.dController;
+
     Motors.initialize();
     Sensors.initialize();
-
-    oi = new OI();
-    
-    rotateToAngleCommand = new RotateToAngle(90);
   }
 
   /**

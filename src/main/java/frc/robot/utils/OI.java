@@ -13,10 +13,9 @@ public class OI {
     public static XboxController dController = new XboxController(0);
     public static XboxController oController = new XboxController(1);
 
-    final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
-    final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
-
     public OI() {
+        final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
+        final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
 
         shootButton.whenActive(new Shoot());
         aimButton.whenActive(new Aim());
