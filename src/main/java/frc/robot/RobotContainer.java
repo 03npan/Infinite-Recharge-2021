@@ -44,7 +44,7 @@ public class RobotContainer {
 
     private void configureButtonBindings() {
         new JoystickButton(dController, XboxController.Button.kA.value)
-            .whenPressed(new Shoot(m_shooter));       
+            .whenHeld(new Shoot(m_shooter));
         
         /*TRY IF THE ABOVE DOESN'T WORK
         final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);

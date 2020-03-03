@@ -13,12 +13,12 @@ public class Shoot extends CommandBase {
 
     @Override
     public void initialize() {
-        m_shooter.runShooter();
+
     }
 
     @Override
     public void execute() {
-        //m_shooter.runShooter(); TRY HERE IF IT DOESN'T WORK IN INITIALIZE
+        m_shooter.runShooter();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Shoot extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 
 }
