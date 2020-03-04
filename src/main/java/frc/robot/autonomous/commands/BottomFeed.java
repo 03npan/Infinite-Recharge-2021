@@ -13,12 +13,12 @@ public class BottomFeed extends CommandBase {
 
     @Override
     public void initialize() {
-        m_feeder.runBottomFeeder();
+
     }
 
     @Override
     public void execute() {
-        //m_feeder.runFeeder(); TRY HERE IF IT DOESN'T WORK IN INITIALIZE
+        m_feeder.runBottomFeeder();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class BottomFeed extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 
 }

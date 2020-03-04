@@ -17,7 +17,7 @@ public class ShooterSubsystem extends SubsystemBase { // PIDSubsystem instead?
     public ShooterSubsystem() {
         leadShooterNeo.restoreFactoryDefaults();
         followerShooterNeo.restoreFactoryDefaults();
-        followerShooterNeo.follow(leadShooterNeo);
+        followerShooterNeo.follow(leadShooterNeo, true);
     }
 
     public void runShooter() {

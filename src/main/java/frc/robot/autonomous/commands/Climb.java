@@ -1,14 +1,14 @@
 package frc.robot.autonomous.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FeederSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;;
 
-public class TopFeed extends CommandBase {
-    private final FeederSubsystem m_feeder;
+public class Climb extends CommandBase {
+    private final ClimbSubsystem m_climb;
 
-    public TopFeed(FeederSubsystem feeder) {
-        m_feeder = feeder;
-        addRequirements(m_feeder);
+    public Climb (ClimbSubsystem climb) {
+        m_climb = climb;
+        addRequirements(m_climb);
     }
 
     @Override
@@ -18,12 +18,12 @@ public class TopFeed extends CommandBase {
 
     @Override
     public void execute() {
-        m_feeder.runTopFeeder();
+        m_climb.climb();
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_feeder.stopTopFeeder();
+        m_climb.stopClimb();
     }
 
     @Override

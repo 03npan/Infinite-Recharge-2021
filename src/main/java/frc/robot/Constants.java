@@ -19,8 +19,8 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-        public static final int LEAD_SHOOTER_NEO = 5;
-        public static final int FOLLOWER_SHOOTER_NEO = 6;
+        public static final int LEAD_SHOOTER_NEO = 6;
+        public static final int FOLLOWER_SHOOTER_NEO = 7;
         public static final double shooter_speed = 1.0;
     }
 
@@ -30,13 +30,17 @@ public final class Constants {
     }
 
     public static final class FeederConstants {
-        public static final int FEEDER_MOTOR_BOTTOM = 7;
-        public static final int FEEDER_MOTOR_TOP = 8;
+        public static final int FEEDER_MOTOR_BOTTOM = 8;
+        public static final int FEEDER_MOTOR_TOP = 9;
         public static final double feeder_speed = 1.0;
     }
 
     public static final class ColorWheelConstants {
+        public static final int COLOR_WHEEL_MOTOR = 5;
+    }
 
+    public static final class AimConstants {
+        
     }
 
     public static final class ClimbConstants {

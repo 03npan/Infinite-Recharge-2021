@@ -45,14 +45,15 @@ public class RobotContainer {
     private void configureButtonBindings() {
         new JoystickButton(dController, XboxController.Button.kA.value)
             .whenHeld(new Shoot(m_shooter));
-        
-        /*TRY IF THE ABOVE DOESN'T WORK
-        final JoystickButton shootButton = new JoystickButton(dController, XboxController.Button.kA.value);
-        final JoystickButton feedButton = new JoystickButton(dController, XboxController.Button.kB.value);
-        final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kX.value);
-            
-        shootButton.whenPressed(new Shoot(m_shooter));
-        */
+
+        new JoystickButton(dController, XboxController.Button.kY.value)
+            .whenHeld(new Intake(m_intake));
+
+        new JoystickButton(dController, XboxController.Button.kB.value)
+            .whenHeld(new TopFeed(m_feeder));
+
+        new JoystickButton(dController, XboxController.Button.kX.value)
+            .whenHeld(new BottomFeed(m_feeder));
     }
 
 

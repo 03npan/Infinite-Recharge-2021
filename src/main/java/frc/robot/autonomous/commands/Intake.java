@@ -17,13 +17,13 @@ public class Intake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_intake.runIntake();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //m_intake.runIntake(); TRY THIS IF IT DOESN'T WORK IN INITIALIZE
+    m_intake.runIntake();
   }
 
   // Called once the command ends or is interrupted.
@@ -35,6 +35,6 @@ public class Intake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

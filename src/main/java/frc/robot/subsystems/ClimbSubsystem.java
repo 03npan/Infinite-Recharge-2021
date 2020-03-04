@@ -11,4 +11,8 @@ public class ClimbSubsystem extends SubsystemBase {
     public void climb() {
         
     }
+
+    public void stopClimb() {
+        
+    }
 }
