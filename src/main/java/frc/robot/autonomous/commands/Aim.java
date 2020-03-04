@@ -42,7 +42,7 @@ public class Aim extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return true;
+        return false;
     }
 
     private void turnToTarget() {
@@ -50,8 +50,16 @@ public class Aim extends CommandBase {
         Update_Limelight_Tracking();
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
         if (m_LimelightHasValidTarget) {
+            System.out.println("Has valid target!");
+            System.out.println(m_LimelightDriveCommand);
+            System.out.println(m_LimelightSteerCommand);
+            System.out.println(LimelightWrapper.isTargetAvalible());
             Motors.drive.arcadeDrive(m_LimelightDriveCommand, m_LimelightSteerCommand);
         } else {
+            System.out.println("No target found...");
+            System.out.println(m_LimelightDriveCommand);
+            System.out.println(m_LimelightSteerCommand);
+            System.out.println(LimelightWrapper.isTargetAvalible());
             Motors.drive.arcadeDrive(0.0, 0.0);
         }
     }
@@ -62,12 +70,13 @@ public class Aim extends CommandBase {
         final double DRIVE_K = 0.26; // how hard to drive fwd toward the target
         final double DESIRED_TARGET_AREA = 13.0; // Area of the target when the robot reaches the wall
         final double MAX_DRIVE = 0.5; // Simple speed limit so we don't drive too fast
+        final double MIN_DRIVE = -0.5; //Simple speed limit for backing up
 
         final double x = LimelightWrapper.getX();
         final double y = LimelightWrapper.getY();
         final double area = LimelightWrapper.getArea();
 
-        if (!LimelightWrapper.isTargetAvalible()) {
+        if (LimelightWrapper.isTargetAvalible() == 0.0) {
             m_LimelightHasValidTarget = false;
             m_LimelightDriveCommand = 0.0;
             m_LimelightSteerCommand = 0.0;
@@ -87,6 +96,11 @@ public class Aim extends CommandBase {
         if (drive_cmd > MAX_DRIVE) {
             drive_cmd = MAX_DRIVE;
         }
+
+        if (drive_cmd < MIN_DRIVE) {
+            drive_cmd = MIN_DRIVE;
+        }
+
         m_LimelightDriveCommand = drive_cmd;
     }
 

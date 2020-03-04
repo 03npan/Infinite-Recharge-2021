@@ -84,6 +84,7 @@ public class SpinColorWheel extends CommandBase {
     } else {
       stageOneColor = "Unknown";
     }
+    System.out.println(stageOneColor);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -166,6 +167,7 @@ public class SpinColorWheel extends CommandBase {
     } else {
       stopAtColor = "Stage_1";
     }
+    System.out.println(stopAtColor);
   }
 
   private String offsetColorReading(ColorMatchResult match) {
@@ -183,6 +185,7 @@ public class SpinColorWheel extends CommandBase {
     } else {
       colorString = "Unknown";
     }
+    System.out.println("Offset: " + colorString);
     return colorString;
   }
 
@@ -199,6 +202,7 @@ public class SpinColorWheel extends CommandBase {
     } else {
       colorString = "Unknown";
     }
+    System.out.println("Actual: " + colorString);
     return colorString;
   }
 }

@@ -44,8 +44,8 @@ public class LimelightWrapper {
         return tv.getDouble(0.0);
     }
 
-    public static boolean isTargetAvalible() {
-        return tv.getBoolean(false);
+    public static double isTargetAvalible() {
+        return tv.getDouble(0);
     }
 
     // Moding the limelight to work for the individual case
@@ -87,7 +87,7 @@ public class LimelightWrapper {
         SmartDashboard.putNumber("Limelight Y", getY());
         SmartDashboard.putNumber("Limelight Area", getArea());
         SmartDashboard.putNumber("Limelight Distance", getDistance());
-        SmartDashboard.putBoolean("Limelight Found Target", isTargetAvalible());
+        SmartDashboard.putNumber("Limelight Found Target", isTargetAvalible());
         SmartDashboard.putString("Limelight Mode", getVisionMode());
     }
 }

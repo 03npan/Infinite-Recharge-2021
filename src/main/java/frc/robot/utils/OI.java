@@ -21,8 +21,8 @@ public class OI {
     public OI() {
 
         shootButton.whenActive(new Shoot());
-        aimButton.whenActive(new Aim());
-        spinColorWheelButton.whenActive(new SpinColorWheel());
+        aimButton.whenHeld(new Aim());
+        spinColorWheelButton.whenHeld(new SpinColorWheel());
     }
 
     public void runIntake() {
