@@ -57,7 +57,7 @@ public class AimSubsystem extends SubsystemBase {
     final double y = LimelightWrapper.getY();
     final double area = LimelightWrapper.getArea();
 
-    if (!LimelightWrapper.isTargetAvalible()) {
+    if (LimelightWrapper.isTargetAvalible() == 0) {
       m_LimelightHasValidTarget = false;
       m_LimelightDriveCommand = 0.0;
       m_LimelightSteerCommand = 0.0;
