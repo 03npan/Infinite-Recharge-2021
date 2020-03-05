@@ -4,9 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.autonomous.commands.Aim;
 import frc.robot.autonomous.commands.DriveStraight;
 import frc.robot.autonomous.commands.RotateToAngle;
-import frc.robot.autonomous.subsystems.BottomFeedSubsystem;
-import frc.robot.autonomous.subsystems.ShooterSubsystem;
-import frc.robot.autonomous.subsystems.TopFeedSubsystem;
+import frc.robot.autonomous.subsystems.AimSubsystem;
 
 /**
  * GoalAuto
@@ -14,11 +12,11 @@ import frc.robot.autonomous.subsystems.TopFeedSubsystem;
 public class GoalAuto extends SequentialCommandGroup {
 
 
-    public GoalAuto(ShooterSubsystem shoot, TopFeedSubsystem topFeed, BottomFeedSubsystem bottomFeed) {
+    public GoalAuto(AimSubsystem m_aim) {
         addCommands(
             new DriveStraight(0.5),
             new RotateToAngle(90),
-            new Aim(),
+            new Aim(m_aim),
             new Shoot());
     }
     
