@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
-import frc.robot.utils.OI;
 
 /**
  * Aim

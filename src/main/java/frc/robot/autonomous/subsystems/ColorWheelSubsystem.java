@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.autonomous.commands;
+package frc.robot.autonomous.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.ColorMatch;
@@ -16,28 +16,13 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Motors;
 import frc.robot.utils.Sensors;
 
-public class SpinColorWheel extends CommandBase {
+public class ColorWheelSubsystem extends SubsystemBase {
   /**
-   * Creates a new SpinColorWheel.
-   */
-
-  /**
-   * All teams start at stage one Stage 2: Rotate the color wheel a set number of
-   * times Stage 3: Rotate the color wheel to a set color
-   */
-
-  /**
-   * POSITION CONTROL: Rotate CONTROL PANEL so a specified color aligns with the
-   * sensor for at least five (5) seconds. Once either ALLIANCE reaches Stage 3
-   * CAPACITY, FMS relays a specified color (randomly selected by FMS and one (1)
-   * of the three (3) colors not currently read by the ALLIANCE’S TRENCH color
-   * sensor) to all OPERATOR CONSOLES simultaneously. The specified color may not
-   * be the same for both ALLIANCES. See Table 3-4 for details on how the TRENCH
-   * light is used during POSTION CONTROL.
+   * Creates a new ColorWheelSubsystem.
    */
 
   private final ColorSensorV3 m_colorSensor = Sensors.getColorSensor();
@@ -57,14 +42,12 @@ public class SpinColorWheel extends CommandBase {
 
   private String gameData;
 
-  public SpinColorWheel() {
+  public ColorWheelSubsystem() {
     gameData = DriverStation.getInstance().getGameSpecificMessage();
-    // Use addRequirements() here to declare subsystem dependencies.
+
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
+  public void intialize() {
     m_colorMatcher.addColorMatch(kBlueTarget);
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
@@ -86,10 +69,7 @@ public class SpinColorWheel extends CommandBase {
     }
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-
+  public void runColorWheel() {
     readGameData();
 
     Color detectedColor = m_colorSensor.getColor();
@@ -109,7 +89,7 @@ public class SpinColorWheel extends CommandBase {
         Timer.delay(0.75);
       } else if ((currentSpin >= 3) && (currentSpin <= 5)) {
         if (stageOneColor.equalsIgnoreCase(stageOneColorString)) {
-          end(false);
+          stopColorWheel();
         }
       }
     }
@@ -117,7 +97,7 @@ public class SpinColorWheel extends CommandBase {
     if (stopAtColor.equalsIgnoreCase(colorString)) {
       // If the wheel keeps spinning even when the motor stops running, try running
       // the motor back a second or two and then stop
-      end(false);
+      stopColorWheel();
     }
 
     /**
@@ -130,16 +110,8 @@ public class SpinColorWheel extends CommandBase {
     SmartDashboard.putString("Detected Color", colorString);
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
+  public void stopColorWheel() {
     colorWheelMotor.set(0);
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 
   private void readGameData() {
@@ -200,5 +172,10 @@ public class SpinColorWheel extends CommandBase {
       colorString = "Unknown";
     }
     return colorString;
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
   }
 }
