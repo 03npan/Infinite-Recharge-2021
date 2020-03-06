@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.commands.RotateToAngle;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
+import frc.robot.utils.NavX;
 import frc.robot.utils.RobotContainer;
 import frc.robot.utils.Sensors;
 
@@ -43,6 +44,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    rotateToAngleCommand = new RotateToAngle(90);
 
     Motors.initialize();
     Sensors.initialize();
