@@ -80,7 +80,7 @@ public class AimSubsystem extends SubsystemBase {
     m_LimelightDriveCommand = drive_cmd;
   }
 
-  private void aimAndRange() {
+  public void aimAndRange() {
     float KpAim = -0.1f;
     float KpDistance = -0.1f;
     float min_aim_command = 0.0f;

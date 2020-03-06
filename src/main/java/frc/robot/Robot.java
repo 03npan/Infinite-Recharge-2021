@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.commands.RotateToAngle;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
-import frc.robot.utils.NavX;
 import frc.robot.utils.RobotContainer;
 import frc.robot.utils.Sensors;
 
@@ -33,8 +32,6 @@ public class Robot extends TimedRobot {
 
   RotateToAngle rotateToAngleCommand;
 
-  private RobotContainer oi;
-
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -45,12 +42,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    rotateToAngleCommand = new RotateToAngle(90);
-
     Motors.initialize();
     Sensors.initialize();
-
-    oi = new RobotContainer();
 
     rotateToAngleCommand = new RotateToAngle(90);
   }
@@ -112,7 +105,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     LimelightWrapper.update();
-    runShooter();
   }
 
   /**
@@ -120,13 +112,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-  }
-
-  private void runShooter() {
-    if (Math.abs(oi.dController.getRawAxis(5)) > 0.15) {
-      Motors.leadShooterNeo.set(oi.dController.getRawAxis(5));
-    } else {
-      Motors.leadShooterNeo.set(0);
-    }
   }
 }
