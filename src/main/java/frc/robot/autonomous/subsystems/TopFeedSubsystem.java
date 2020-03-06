@@ -24,7 +24,7 @@ public class TopFeedSubsystem extends SubsystemBase {
   }
 
   public void runFeed(double motorSpeed) {
-    feedMotor.set(motorSpeed);
+    feedMotor.set(-motorSpeed);
   }
   
   public void stopFeed() {

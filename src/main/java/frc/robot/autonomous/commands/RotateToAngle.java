@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.utils.Motors;
 import frc.robot.utils.NavX;
-import frc.robot.utils.OI;
+import frc.robot.utils.RobotContainer;
 
 public class RotateToAngle extends CommandBase implements PIDOutput {
   /**
@@ -24,7 +24,7 @@ public class RotateToAngle extends CommandBase implements PIDOutput {
   private DifferentialDrive drive = Motors.drive;
   private PIDController turnController;
 
-  private XboxController driverController = OI.dController;
+  private XboxController driverController = RobotContainer.dController;
 
   private NavX navX = new NavX();
 

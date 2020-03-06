@@ -23,7 +23,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
     leadNeo.restoreFactoryDefaults();
     followerNeo.restoreFactoryDefaults();
-    followerNeo.follow(leadNeo);
+    followerNeo.follow(leadNeo, true);
   }
 
   public void runShooter(double motorSpeed) {
