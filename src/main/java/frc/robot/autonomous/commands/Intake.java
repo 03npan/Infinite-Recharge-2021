@@ -9,7 +9,6 @@ package frc.robot.autonomous.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.autonomous.subsystems.IntakeSubsystem;
-import frc.robot.utils.Motors;
 
 public class Intake extends CommandBase {
   /**

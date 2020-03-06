@@ -9,7 +9,6 @@ package frc.robot.autonomous.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.autonomous.subsystems.ShooterSubsystem;
-import frc.robot.utils.Motors;
 
 public class Shooter extends CommandBase {
   /**

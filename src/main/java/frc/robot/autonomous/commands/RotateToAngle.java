@@ -24,8 +24,6 @@ public class RotateToAngle extends CommandBase implements PIDOutput {
   private DifferentialDrive drive = Motors.drive;
   private PIDController turnController;
 
-  private XboxController driverController = RobotContainer.dController;
-
   private NavX navX = new NavX();
 
   static final double kToleranceDegrees = 2.0f;
