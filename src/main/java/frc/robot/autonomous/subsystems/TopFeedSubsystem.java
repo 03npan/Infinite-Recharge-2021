@@ -31,6 +31,10 @@ public class TopFeedSubsystem extends SubsystemBase {
     feedMotor.set(0);
   }
 
+  public void reverseFeed() {
+    feedMotor.set(1);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

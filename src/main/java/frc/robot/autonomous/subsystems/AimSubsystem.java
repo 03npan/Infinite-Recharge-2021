@@ -27,7 +27,6 @@ public class AimSubsystem extends SubsystemBase {
   }
 
   public void stopAiming() {
-
     getTable().getEntry("ledMode").setNumber(1);
   }
 
@@ -36,7 +35,6 @@ public class AimSubsystem extends SubsystemBase {
   }
 
   public void turnToTarget() {
-
     Update_Limelight_Tracking();
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     if (m_LimelightHasValidTarget) {

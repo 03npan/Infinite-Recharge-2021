@@ -7,23 +7,24 @@
 
 package frc.robot.autonomous.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.autonomous.subsystems.BottomFeedSubsystem;
 import frc.robot.autonomous.subsystems.IntakeSubsystem;
-import frc.robot.utils.Motors;
-import frc.robot.utils.RobotContainer;
+import frc.robot.autonomous.subsystems.TopFeedSubsystem;
 
-public class Intake extends CommandBase {
+public class EjectBalls extends CommandBase {
   /**
-   * Creates a new Intake.
+   * Creates a new EjectBalls.
    */
+  private TopFeedSubsystem m_topFeed;
+  private BottomFeedSubsystem m_bottomFeed;
+  private IntakeSubsystem m_intake;
 
-   private final IntakeSubsystem m_intake;
-   private final XboxController controller = RobotContainer.oController;
-
-  public Intake(IntakeSubsystem m_intake) {
+  public EjectBalls(TopFeedSubsystem m_topFeed, BottomFeedSubsystem m_bottomFeed, IntakeSubsystem m_intake) {
+    this.m_topFeed = m_topFeed;
+    this.m_bottomFeed = m_bottomFeed;
     this.m_intake = m_intake;
-    addRequirements(m_intake);
+    addRequirements(m_topFeed, m_bottomFeed, m_intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -35,12 +36,16 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intake.runIntake(controller);
+    m_topFeed.reverseFeed();
+    m_bottomFeed.reverseFeed();
+    m_intake.reverseIntake();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_topFeed.stopFeed();
+    m_bottomFeed.stopFeed();
     m_intake.stopIntake();
   }
 

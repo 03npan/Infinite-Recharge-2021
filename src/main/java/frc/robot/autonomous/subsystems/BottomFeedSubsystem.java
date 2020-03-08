@@ -30,6 +30,10 @@ public class BottomFeedSubsystem extends SubsystemBase {
   public void stopFeed() {
     feedMotor.set(0);
   }
+  
+  public void reverseFeed() {
+    feedMotor.set(1);
+  }
 
   @Override
   public void periodic() {

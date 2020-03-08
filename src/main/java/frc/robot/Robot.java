@@ -7,11 +7,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.autonomous.commands.RotateToAngle;
 import frc.robot.utils.LimelightWrapper;
 import frc.robot.utils.Motors;
 import frc.robot.utils.RobotContainer;
@@ -30,7 +32,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  RotateToAngle rotateToAngleCommand;
+  private Command m_autoCommand;
 
   private RobotContainer oi;
 
@@ -46,10 +48,8 @@ public class Robot extends TimedRobot {
 
     Motors.initialize();
     Sensors.initialize();
-
+    LimelightWrapper.ledMode(false);
     oi = new RobotContainer();
-
-    rotateToAngleCommand = new RotateToAngle(90);
   }
 
   /**
@@ -80,27 +80,33 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    LimelightWrapper.ledMode(true);
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-    if (rotateToAngleCommand != null)
-      rotateToAngleCommand.schedule();
+    
+    m_autoCommand = oi.getAutoCommand();
+
+    if(m_autoCommand != null) {
+      m_autoCommand.schedule();
+    }
   }
+  
 
   /**
    * This function is called periodically during autonomous.
    */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    // switch (m_autoSelected) {
+    //   case kCustomAuto:
+    //     // Put custom auto code here
+    //     break;
+    //   case kDefaultAuto:
+    //   default:
+    //     // Put default auto code here
+    //     break;
+    // }
   }
 
   /**
@@ -109,7 +115,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     LimelightWrapper.update();
-    runShooter();
+    runShroud();
+    runIntake(RobotContainer.oController);
   }
 
   /**
@@ -119,11 +126,19 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
-  private void runShooter() {
-    if (Math.abs(oi.dController.getRawAxis(5)) > 0.15) {
-      Motors.leadShooterNeo.set(oi.dController.getRawAxis(5));
+  private void runShroud() {
+    if (Math.abs(RobotContainer.dController.getRawAxis(5)) > 0.15) {
+      Motors.shroud.set(RobotContainer.dController.getRawAxis(5));
     } else {
-      Motors.leadShooterNeo.set(0);
+      Motors.shroud.set(0);
     }
+  }
+
+  public void runIntake(XboxController controller) {
+      if (Math.abs(controller.getRawAxis(1)) > 0.15) {
+          Motors.intakeMotor.set(controller.getRawAxis(1));
+      } else {
+        Motors.intakeMotor.set(0);
+      }
   }
 }
