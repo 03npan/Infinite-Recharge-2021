@@ -24,11 +24,15 @@ public class BottomFeedSubsystem extends SubsystemBase {
   }
 
   public void runFeed(double motorSpeed) {
-    feedMotor.set(motorSpeed);
+    feedMotor.set(-motorSpeed);
   }
   
   public void stopFeed() {
     feedMotor.set(0);
+  }
+  
+  public void reverseFeed() {
+    feedMotor.set(1);
   }
 
   @Override

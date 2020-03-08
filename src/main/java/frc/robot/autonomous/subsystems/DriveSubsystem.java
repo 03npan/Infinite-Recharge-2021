@@ -15,6 +15,10 @@ public class DriveSubsystem extends SubsystemBase {
         drive.setSafetyEnabled(false); //not sure where this should go
     }
 
+    public void arcadeDrive(double speed, double turn) {
+        drive.arcadeDrive(speed, turn);
+    }
+
     // Drives the robot - NEED TO ADD IN
     public void driveRobot(XboxController driverController) {
         double deadZone = 0.15;
@@ -29,7 +33,11 @@ public class DriveSubsystem extends SubsystemBase {
         if (Math.abs(turn) <= deadZone)
         turn = 0.0;
 
-        drive.arcadeDrive(dif * 1, (turn) * 0.6); // 0.8
+        drive.arcadeDrive(dif * 1, (turn) * 0.8); // 0.8
+    }
+
+    public void stopDriveTrain() {
+        drive.arcadeDrive(0, 0);
     }
 
     // Sets max output of drive.

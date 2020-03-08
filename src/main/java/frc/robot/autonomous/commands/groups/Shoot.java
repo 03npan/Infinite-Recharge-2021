@@ -26,7 +26,6 @@ public class Shoot extends ParallelDeadlineGroup {
   public Shoot() {
     // Add your commands in the super() call.  Add the deadline first.
     super(
-        new InstantCommand(),
         new Shooter(new ShooterSubsystem()),
         new TopFeed(new TopFeedSubsystem()),
         new BottomFeed(new BottomFeedSubsystem())
