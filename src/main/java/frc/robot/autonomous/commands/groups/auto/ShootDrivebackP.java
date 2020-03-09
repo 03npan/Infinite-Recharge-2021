@@ -5,30 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.autonomous.commands.groups;
+package frc.robot.autonomous.commands.groups.auto;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import frc.robot.autonomous.commands.BottomFeed;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.autonomous.commands.Shooter;
-import frc.robot.autonomous.commands.TopFeed;
-import frc.robot.autonomous.subsystems.BottomFeedSubsystem;
+import frc.robot.autonomous.commands.groups.teleop.DriveBackAuto;
+import frc.robot.autonomous.subsystems.DriveSubsystem;
 import frc.robot.autonomous.subsystems.ShooterSubsystem;
-import frc.robot.autonomous.subsystems.TopFeedSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class Shoot extends ParallelDeadlineGroup {
+public class ShootDrivebackP extends ParallelCommandGroup {
   /**
-   * Creates a new Shoot.
+   * Creates a new ShootDrivebackP. (Previously Auto2)
    */
-  public Shoot() {
-    // Add your commands in the super() call.  Add the deadline first.
-    super(
-        new Shooter(new ShooterSubsystem()),
-        new TopFeed(new TopFeedSubsystem()),
-        new BottomFeed(new BottomFeedSubsystem())
-    );
+  public ShootDrivebackP(ShooterSubsystem m_shooter, DriveSubsystem driveTrain) {
+    addCommands(new Shooter(m_shooter, 0.525).withTimeout(0.75), new DriveBackAuto(driveTrain));
+    // Run the Shooter wheel at 52.5% for 0.75 seconds while also driving back
   }
 }
