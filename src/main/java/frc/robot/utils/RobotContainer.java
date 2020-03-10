@@ -65,7 +65,7 @@ public class RobotContainer {
         topFeederButton.whenHeld(new TopFeed(m_topFeeder));
         colorWheelButton.whenHeld(new ColorWheel(m_colorWheel));
         ejectButton.whenHeld(new EjectBalls(m_topFeeder, m_bottomFeeder, m_intake));
-        autoShootButton.whenPressed(new AutoShoot(m_shooter, m_robotDrive));
+        autoShootButton.whenPressed(new AutoShoot(m_robotDrive));
 
         // Default command set to drive
         m_robotDrive.setDefaultCommand(new RunCommand(() -> m_robotDrive.driveRobot(dController), m_robotDrive));
