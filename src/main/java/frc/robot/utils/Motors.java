@@ -1,6 +1,5 @@
 package frc.robot.utils;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
@@ -29,8 +28,7 @@ public class Motors {
     public static WPI_VictorSPX feederMotorBottom;
     public static WPI_VictorSPX feederMotorTop;
 
-    public static WPI_VictorSPX colorWheelMotor;
-    public static WPI_TalonSRX shroud;
+    public static WPI_VictorSPX shroud;
 
     public static CANSparkMax leadShooterNeo;
     public static CANSparkMax followerShooterNeo;
@@ -46,10 +44,8 @@ public class Motors {
         drive = new DifferentialDrive(left, right);
         drive.setSafetyEnabled(false);
 
-        shroud = new WPI_TalonSRX(RobotMap.SHROUD.getPin());
+        shroud = new WPI_VictorSPX(RobotMap.SHROUD.getPin());
         intakeMotor = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR.getPin());
-
-        colorWheelMotor = new WPI_VictorSPX(RobotMap.COLOR_WHEEL_MOTOR.getPin());
 
         feederMotorBottom = new WPI_VictorSPX(RobotMap.FEEDER_MOTOR_BOTTOM.getPin());
         feederMotorTop = new WPI_VictorSPX(RobotMap.FEEDER_MOTOR_TOP.getPin());

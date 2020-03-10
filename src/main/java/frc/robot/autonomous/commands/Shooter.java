@@ -18,8 +18,11 @@ public class Shooter extends CommandBase {
 
   private final ShooterSubsystem m_shooter;
 
-  public Shooter(ShooterSubsystem m_shooter) {
+  private double motorSpeed;
+
+  public Shooter(ShooterSubsystem m_shooter, double motorSpeed) {
     this.m_shooter = m_shooter;
+    this.motorSpeed = motorSpeed;
     addRequirements(m_shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -32,7 +35,7 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.runShooter(0.5);
+    m_shooter.runShooter(motorSpeed);
   }
 
   // Called once the command ends or is interrupted.

@@ -33,7 +33,7 @@ public class DriveSubsystem extends SubsystemBase {
         if (Math.abs(turn) <= deadZone)
         turn = 0.0;
 
-        drive.arcadeDrive(dif * 1, (turn) * 0.8); // 0.8
+        drive.arcadeDrive(dif * 1, (turn) * 0.65); // 0.8
     }
 
     public void stopDriveTrain() {

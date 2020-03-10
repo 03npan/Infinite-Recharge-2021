@@ -1,18 +1,22 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot.autonomous.commands;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.autonomous.subsystems.DriveSubsystem;
 import frc.robot.utils.Motors;
-
-/**
- * DriveBack
- */
 
 public class DriveBack extends CommandBase {
     /**
      * Creates a new DriveBack.
      */
+
+    // private Timer timer = new Timer();;
 
     private double speed;
 
@@ -47,5 +51,4 @@ public class DriveBack extends CommandBase {
     public boolean isFinished() {
         return false;
     }
-
 }

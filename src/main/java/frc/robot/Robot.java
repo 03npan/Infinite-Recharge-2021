@@ -50,6 +50,8 @@ public class Robot extends TimedRobot {
     Sensors.initialize();
     LimelightWrapper.ledMode(false);
     oi = new RobotContainer();
+
+    CameraServer.getInstance().startAutomaticCapture(0);
   }
 
   /**
@@ -136,7 +138,7 @@ public class Robot extends TimedRobot {
 
   public void runIntake(XboxController controller) {
       if (Math.abs(controller.getRawAxis(1)) > 0.15) {
-          Motors.intakeMotor.set(controller.getRawAxis(1));
+          Motors.intakeMotor.set(controller.getRawAxis(1) / 2);
       } else {
         Motors.intakeMotor.set(0);
       }

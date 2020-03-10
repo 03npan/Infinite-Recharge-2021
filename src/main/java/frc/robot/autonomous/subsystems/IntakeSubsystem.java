@@ -25,7 +25,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void runIntake(XboxController controller) {
         if (Math.abs(controller.getRawAxis(5)) > 0.15) {
-            Motors.intakeMotor.set(controller.getRawAxis(5));
+            Motors.intakeMotor.set(controller.getRawAxis(5) / 2);
         } else {
             Motors.intakeMotor.set(0);
         }
