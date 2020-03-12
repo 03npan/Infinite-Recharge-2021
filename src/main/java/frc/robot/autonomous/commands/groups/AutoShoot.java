@@ -2,6 +2,7 @@ package frc.robot.autonomous.commands.groups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.autonomous.commands.DriveBack;
+import frc.robot.autonomous.commands.groups.teleop.Shoot;
 import frc.robot.autonomous.subsystems.DriveSubsystem;
 
 /**

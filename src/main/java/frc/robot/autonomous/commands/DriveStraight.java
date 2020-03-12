@@ -40,11 +40,7 @@ public class DriveStraight extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-<<<<<<< HEAD
-        m_driveTrain.stopDriveTrain();
-=======
         m_driveTrain.stopDriveTrain(); // Test
->>>>>>> c39986153668a114f5705b7fc926246a8d9c20f0
     }
 
     // Returns true when the command should end.

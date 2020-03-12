@@ -8,14 +8,17 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autonomous.commands.Aim;
 import frc.robot.autonomous.commands.BottomFeed;
+import frc.robot.autonomous.commands.Climb;
 import frc.robot.autonomous.commands.DriveStraight;
 import frc.robot.autonomous.commands.EjectBalls;
+import frc.robot.autonomous.commands.LiftClimber;
 import frc.robot.autonomous.commands.Shooter;
 import frc.robot.autonomous.commands.TopFeed;
 import frc.robot.autonomous.commands.groups.auto.GoalAuto2;
 import frc.robot.autonomous.commands.groups.auto.ShootDrivebackP;
 import frc.robot.autonomous.subsystems.AimSubsystem;
 import frc.robot.autonomous.subsystems.BottomFeedSubsystem;
+import frc.robot.autonomous.subsystems.ClimbSubsystem;
 import frc.robot.autonomous.subsystems.DriveSubsystem;
 import frc.robot.autonomous.subsystems.IntakeSubsystem;
 import frc.robot.autonomous.subsystems.ShooterSubsystem;
@@ -34,6 +37,7 @@ public class RobotContainer {
     private final BottomFeedSubsystem m_bottomFeeder = new BottomFeedSubsystem();
     // private final ClimbSubsystem m_climb = new ClimbSubsystem();
     private final AimSubsystem m_aim = new AimSubsystem();
+    private final ClimbSubsystem m_climb = new ClimbSubsystem();
 
     // Controllers
     public static XboxController dController = new XboxController(0);
@@ -47,6 +51,8 @@ public class RobotContainer {
     final JoystickButton aimButton = new JoystickButton(dController, XboxController.Button.kB.value);
     final JoystickButton testAuto1 = new JoystickButton(dController, XboxController.Button.kX.value);
     final JoystickButton testAuto2 = new JoystickButton(dController, XboxController.Button.kY.value);
+    final JoystickButton liftClimber = new JoystickButton(dController, XboxController.Button.kBumperLeft.value);
+    final JoystickButton climb = new JoystickButton(dController, XboxController.Button.kBumperRight.value);
     
     final JoystickButton bottomFeederButton = new JoystickButton(oController, XboxController.Button.kA.value);
     final JoystickButton topFeederButton = new JoystickButton(oController, XboxController.Button.kY.value);
@@ -62,13 +68,12 @@ public class RobotContainer {
         bottomFeederButton.whenHeld(new BottomFeed(m_bottomFeeder));
         topFeederButton.whenHeld(new TopFeed(m_topFeeder));
         ejectButton.whenHeld(new EjectBalls(m_topFeeder, m_bottomFeeder, m_intake));
-<<<<<<< HEAD
-        autoShootButton.whenPressed(new AutoShoot(m_robotDrive));
-=======
 
         testAuto1.whenPressed(new ShootDrivebackP(m_shooter, m_robotDrive));
         testAuto2.whenPressed(new ShootDrivebackP(m_shooter, m_robotDrive));
->>>>>>> c39986153668a114f5705b7fc926246a8d9c20f0
+
+        liftClimber.whenHeld(new LiftClimber(m_climb));
+        climb.whenHeld(new Climb(m_climb));
 
         // Default command set to drive
         m_robotDrive.setDefaultCommand(new RunCommand(() -> m_robotDrive.driveRobot(dController), m_robotDrive));

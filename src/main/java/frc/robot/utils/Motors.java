@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -32,6 +34,9 @@ public class Motors {
 
     public static CANSparkMax leadShooterNeo;
     public static CANSparkMax followerShooterNeo;
+
+    public static DoubleSolenoid solenoid;
+    public static Compressor compressor;
 
     public static void initialize() {
         victorLeft1 = new WPI_VictorSPX(RobotMap.VICTOR_LEFT_1.getPin());
@@ -62,5 +67,8 @@ public class Motors {
         right = new SpeedControllerGroup(victorRight1, victorRight2);
         drive = new DifferentialDrive(left, right);
         drive.setSafetyEnabled(false);
+
+        compressor = new Compressor(); //PCM ID is 0 by default
+        solenoid = new DoubleSolenoid(1, 2, 3);
     }
 }

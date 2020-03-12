@@ -86,6 +86,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    Motors.compressor.start();
     
     m_autoCommand = oi.getAutoCommand();
 
@@ -119,6 +120,7 @@ public class Robot extends TimedRobot {
     LimelightWrapper.update();
     runShroud();
     runIntake(RobotContainer.oController);
+    checkPsi();
   }
 
   /**
@@ -142,5 +144,12 @@ public class Robot extends TimedRobot {
       } else {
         Motors.intakeMotor.set(0);
       }
+  }
+
+  public void checkPsi() {
+    if ((250.0 * Sensors.getPressureSensor().getVoltage() / 5.0 - 25.0) > 70.0) {
+      //value of 5.0 may need to be changed, is supposed to be determined through testing
+      Motors.compressor.stop();
+    }
   }
 }
